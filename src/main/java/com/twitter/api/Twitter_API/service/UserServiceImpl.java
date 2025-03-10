@@ -1,11 +1,8 @@
 package com.twitter.api.Twitter_API.service;
 import com.twitter.api.Twitter_API.entity.User;
 import com.twitter.api.Twitter_API.repository.UserRepository;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 
@@ -17,6 +14,7 @@ public class UserServiceImpl implements UserService{
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
 
     @Override
     public List<User> findAll() {
