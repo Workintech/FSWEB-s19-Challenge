@@ -19,6 +19,9 @@ public class TweetServiceImpl implements TweetService{
 
     @Override
     public Tweet save(Tweet tweet) {
+        if(tweet.getUser() == null || tweet.getUser().getId()==null) {
+            throw new IllegalArgumentException("User must be specified.");
+        }
         return tweetRepository.save(tweet);
     }
 
@@ -34,16 +37,29 @@ public class TweetServiceImpl implements TweetService{
 
     @Override
     public Tweet update(Long id, Tweet tweet) {
-        Tweet updatedTweet = tweetRepository.findById(id).orElseThrow(() -> new TweetNotFoundException(id + "'li tweet bulunamadı."));
+        Tweet existingTweet = tweetRepository.findById(id).orElseThrow(() -> new TweetNotFoundException(id + "'li tweet bulunamadı."));
 
         if(tweet.getContent() != null){
-            updatedTweet.setContent(tweet.getContent());
+            existingTweet.setContent(tweet.getContent());
         }
-        return tweetRepository.save(updatedTweet);
+        if(tweet.getCreatedAt() != null){
+            existingTweet.setCreatedAt(tweet.getCreatedAt());
+        }
+        if(tweet.getUser() != null){
+            existingTweet.setUser(tweet.getUser());
+        }
+        return tweetRepository.save(existingTweet);
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Long id, Long userId) {
+        Tweet tweet = tweetRepository.findById(id)
+                .orElseThrow(() -> new TweetNotFoundException(id + "'li tweet bulunamadı."));
+
+        // **Tweet sahibi mi kontrol et**
+        if (!tweet.getUser().getId().equals(userId)) {
+            throw new SecurityException("Bu tweeti silme yetkiniz yok!");
+        }
         tweetRepository.deleteById(id);
     }
 

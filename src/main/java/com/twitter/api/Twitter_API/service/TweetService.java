@@ -10,6 +10,6 @@ public interface TweetService {
     List<Tweet> findByUserId(Long userId);
     Tweet findById(Long id);
     Tweet update(Long id, Tweet tweet);
-    void delete(Long id);  //🚨(Sadece tweet sahibi ilgili tweeti silebilimelidir.)
+    void delete(Long id, Long userId);  //🚨(Sadece tweet sahibi ilgili tweeti silebilimelidir.)
     List<Tweet> findAll();
 }

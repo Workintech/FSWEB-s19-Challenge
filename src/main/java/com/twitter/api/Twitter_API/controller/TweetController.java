@@ -69,9 +69,10 @@ public class TweetController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable("id") Long id){
-        tweetService.delete(id);
+    public void delete(@PathVariable("id") Long id, @RequestParam("userId") Long userId) {
+        tweetService.delete(id, userId);
     }
+
 
 
 }
