@@ -2,9 +2,8 @@ package com.twitter.api.Twitter_API.exceptions;
 import lombok.*;
 import org.springframework.http.HttpStatus;
 
-@AllArgsConstructor
 @Getter
-@Setter
+@AllArgsConstructor
 public class ApiException extends RuntimeException{
     private HttpStatus httpStatus;
 
@@ -12,4 +11,5 @@ public class ApiException extends RuntimeException{
         super(message);
         this.httpStatus=httpStatus;
     }
+
 }
