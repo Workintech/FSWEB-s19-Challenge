@@ -1,5 +1,4 @@
 package com.twitter.api.Twitter_API.controller;
-
 import com.twitter.api.Twitter_API.dto.TweetResponse;
 import com.twitter.api.Twitter_API.entity.Tweet;
 import com.twitter.api.Twitter_API.exceptions.TweetNotFoundException;
@@ -7,7 +6,6 @@ import com.twitter.api.Twitter_API.service.TweetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
